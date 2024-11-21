@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="icon" href="images/naledi (3) 1.png">
+    <title>AI Chatbot Dashboard</title>
+    <style>
+        .rounded-image {
+      border-radius: 15px; 
+  }
+          #customize-popup {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            display: none;
+            z-index: 1000;
+        }
+
+        #customize-popup.show {
+            display: block;
+        }
+
+        .popup-buttons button {
+            margin: 5px;
+        }
+
+        .chatbot-icon {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: orange;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .chatbot-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .chatbot-popup {
+            position: fixed;
+            bottom: 150px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .chatbot-body {
+            padding: 20px;
+            font-size: 16px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .card {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .metrics-card {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .metrics-card:hover {
+            background-color: #f8f9fa;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .highlight {
+            background-color: #ffff99;
+            border: 2px solid #ffcc00;
+        }
+        
+        @keyframes moveUpDown {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .tall-image {
+            animation: moveUpDown 2s ease-in-out infinite;
+        }
+
+        @media (min-width: 768px) {
+            .image-container {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .image-container {
+                order: 2;
+                margin-top: 20px;
+            }
+        }
+       
+        .custom-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+
+        .custom-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .custom-btn:active {
+            background-color: #4e555b;
+        }
+
+     
+        .metrics-card {
+            border-radius: 15px; 
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+            display: flex; 
+            flex-direction: column;
+            justify-content: space-between; 
+        }
+
+        .metrics-card .card-body {
+            background-color: #f8f9fa;
+            flex-grow: 1;
+        }
+
+        .metrics-card:hover .card-body {
+            background-color: #e2e6ea;
+        }
+
+        
+        .start-chat {
+            border-left: 5px solid #17a2b8;
+        }
+
+        .chat-history {
+            border-left: 5px solid #28a745; 
+        }
+
+        .settings {
+            border-left: 5px solid #ffc107;
+        }
+
+        .support {
+            border-left: 5px solid #dc3545; /
+        }
+
+      
+        .metrics-card .card-title i {
+            font-size: 15px; 
+            margin-right: 15px;
+        }
+
+      
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .col-md-3 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+     <div id="customize-popup">
+        <img src="images/naledi (3) 1.png" alt="Customization Icon" style="width: 100px; height: auto; margin-bottom: 10px;">
+        <h3>Customize Your Chatbot</h3>
+        <p>Would you like to customize your chatbot experience with AI assistance or continue with the default mode?</p>
+        <div class="popup-buttons">
+            <button id="customize-ai" class="btn btn-primary">Customize with AI</button>
+            <button id="default-mode" class="btn btn-secondary">Continue with Default</button>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome to Your AI Chatbot</h1>
+        <p class="text-center">Your personal assistant, ready to assist you with various tasks and provide support anytime.</p>
+        
+        <div class="text-center mb-4">
+            <a href="metrics.html" class="btn btn-primary">View Chat History</a>
+            <a href="recommendations.html" class="btn btn-secondary">Chatbot Settings</a>
+            <a href="profile.html" class="btn btn-warning">User Profile</a>
+            <a href="help.html" class="btn btn-info">Help & FAQs</a>
+        </div>
+     
+    <div class="container mt-5">
+        <h2 class="mt-5">Chatbot Commands:</h2>
+        <div class="row text-center">
+          
+            <div class="col-md-3">
+                <div class="card metrics-card highlightable start-chat">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-comments"></i> Start A Chat</h5>
+                        <p class="card-text">Begin a new conversation with the chatbot.</p>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="col-md-3">
+                <div class="card metrics-card highlightable chat-history">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-history"></i> Chat History</h5>
+                        <p class="card-text">View your past interactions with the chatbot.</p>
+                    </div>
+                </div>
+            </div>
+
+         
+            <div class="col-md-3">
+                <div class="card metrics-card highlightable settings">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-cogs"></i> Settings</h5>
+                        <p class="card-text">Customize the chatbot’s appearance and preferences.</p>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="col-md-3">
+                <div class="card metrics-card highlightable support">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-life-ring"></i> Support</h5>
+                        <p class="card-text">Contact customer support for assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <h2 class="mt-5">Today's Chatbot Recommendations:</h2>
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <ul class="list-group">
+                    <li class="list-group-item highlightable">⬤ Ask the chatbot for daily updates on your schedule.</li>
+                    <li class="list-group-item highlightable">⬤ Request assistance with setting reminders.</li>
+                    <li class="list-group-item highlightable">⬤ Explore new topics or FAQs by asking the chatbot.</li>
+                    <li class="list-group-item highlightable">⬤ Have the chatbot help you organize your day.</li>
+                </ul>
+            </div>
+            <div class="col-md-4 image-container">
+                <img src="images/naledi (3) 1.png" alt="Chatbot" class="img-fluid tall-image" width="300" height="400">
+            </div>
+        </div>
+
+        <h2>Your Current Chatbot Tasks:</h2>
+        <ul class="list-group mb-4">
+            <li class="list-group-item highlightable">⬤ Set a reminder for your meeting at 3 PM today.</li>
+            <li class="list-group-item highlightable">⬤ Organize your emails for the upcoming event.</li>
+            <li class="list-group-item highlightable">⬤ Check for any updates on the website dashboard.</li>
+        </ul>
+
+        <h3>User Testimonials:</h3>
+        <div class="card mb-3 highlightable">
+            <div class="card-body">
+                <p class="card-text">"The AI Chatbot is incredibly helpful for my daily tasks!" - <strong>Tlhalefang N.</strong></p>
+            </div>
+        </div>
+        <div class="card mb-3 highlightable">
+            <div class="card-body">
+                <p class="card-text">"I love how it reminds me of important things and even helps with my organization." - <strong>Admin User</strong></p>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="container mt-5">
+        <h3>Contact Organizations:</h3>
+        <div class="row mb-3">
+          
+            <div class="col-md-8">
+                <div class="card highlightable">
+                    <div class="card-body">
+                        <h5 class="card-title">Botswana Red Cross Society</h5>
+                        <p class="card-text">The Botswana Red Cross Society is dedicated to improving the lives of vulnerable communities through humanitarian aid, disaster response, and health programs.</p>
+                        <p class="card-text">
+                            <div class="d-flex justify-content-between">
+                                <a href="https://wa.me/+26712345678" target="_blank" class="btn custom-btn mr-2"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                                <a href="https://www.facebook.com/BotswanaRedCross" target="_blank" class="btn custom-btn mr-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                <a href="mailto:info@redcross.org.bw" class="btn custom-btn mr-2"><i class="fas fa-envelope"></i> Email</a>
+                                <a href="tel:+26712345678" class="btn custom-btn"><i class="fas fa-phone-alt"></i> Call</a>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-md-4">
+                <img src="images/em1.png" class="img-fluid rounded-image" alt="Botswana Red Cross Image">
+            </div>
+        </div>
+
+        
+        <h3>Stay Connected</h3>
+        <p>Follow us on social media for more health tips and updates:</p>
+        <ul class="list-inline text-center mb-5">
+            <li class="list-inline-item"><a href="#" class="btn btn-outline-primary">Facebook</a></li>
+            <li class="list-inline-item"><a href="#" class="btn btn-outline-info">Twitter</a></li>
+            <li class="list-inline-item"><a href="#" class="btn btn-outline-danger">Instagram</a></li>
+        </ul>
+
+
+    <div id="chatbot-icon" class="chatbot-icon">
+        <img src="images/naledi (3) 1.png" alt="Chatbot Icon">
+    </div>
+
+    <div id="chatbot-popup" class="chatbot-popup">
+        <div class="chatbot-header">
+            <span>AI Chatbot</span>
+            <button id="close-chatbot" class="close-btn">&times;</button>
+        </div>
+        <div class="chatbot-body">
+            <p>How can I assist you today?</p>
+            <button class="btn btn-primary">Start Chat</button>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 AI Chatbot Inc. | All Rights Reserved</p>
+        <p>Follow us on: <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square"></i></a> <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a> <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram-square"></i></a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var chatbotIcon = document.getElementById('chatbot-icon');
+            var chatbotPopup = document.getElementById('chatbot-popup');
+            var closeChatbotBtn = document.getElementById('close-chatbot');
+            var customizePopup = document.getElementById('customize-popup');
+            var customizeAIButton = document.getElementById('customize-ai');
+            var defaultModeButton = document.getElementById('default-mode');
+        
+            chatbotIcon.addEventListener('click', function() {
+                chatbotPopup.style.display = 'flex'; 
+            });
+        
+            closeChatbotBtn.addEventListener('click', function() {
+                chatbotPopup.style.display = 'none'; 
+            });
+
+            setTimeout(function() {
+                customizePopup.classList.add('show');
+            }, 1000);
+
+            customizeAIButton.addEventListener('click', function() {
+                alert('You selected Customize with AI.');
+                customizePopup.classList.remove('show');
+            });
+
+            defaultModeButton.addEventListener('click', function() {
+                alert('You selected Continue with Default Mode.');
+                customizePopup.classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>

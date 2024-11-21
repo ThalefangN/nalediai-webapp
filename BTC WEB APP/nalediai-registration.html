@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Register for Naledi AI to start your journey towards personalized health and mental well-being solutions.">
+    <meta name="author" content="Tlhalefang Ntshilane">
+    <title>Register - Naledi AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            border-radius: 50px; 
+            margin: 3px 0;
+            border: none;
+            cursor: pointer;
+        }
+        .google-btn {
+            background-color: #db4437;
+            color: white;
+        }
+        .facebook-btn {
+            background-color: #3b5998;
+            color: white;
+        }
+        .social-btn i {
+            margin-right: 10px;
+        }
+        .register-footer {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .register-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+  <nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
+    <div class="container">
+        <a class="navbar-brand logo-image d-flex align-items-center" href="index.html">
+            <img src="images/naledi (3) 1.png" alt="alternative" style="width: 70px; height: auto;">
+            <span style="font-size: 1.5rem; font-weight: bold; margin-left: 10px;">Naledi AI</span>
+        </a>
+        <button class="navbar-toggler" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+        </button>
+    </div>
+</nav>
+
+    <div class="container mt-5 pt-5">
+        <h2 class="text-center">Create an Account</h2>
+        <form action="register-process.php" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="agreement" name="agreement" required>
+                <label class="form-check-label" for="agreement">
+                    I agree to the <a href="terms-and-conditions.html" target="_blank">Terms & Conditions</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+
+        <div class="register-footer">
+            <p>Already have an account? <a href="naledi-login.html">Sign In</a></p>
+        </div>
+
+        <div class="mt-4">
+            <button class="social-btn google-btn">
+                <i class="fab fa-google"></i> Continue with Google
+            </button>
+            <button class="social-btn facebook-btn">
+                <i class="fab fa-facebook"></i> Continue with Facebook
+            </button>
+        </div>
+    </div>
+
+    <footer class="footer mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 Naledi AI. All Rights Reserved.</p>
+            <p>Website designed by DevGen Code Pioneers Network.</p>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

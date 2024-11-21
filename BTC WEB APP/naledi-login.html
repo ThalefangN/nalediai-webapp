@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Login to Naledi AI to continue your journey towards personalized health and mental well-being solutions.">
+    <meta name="author" content="Tlhalefang Ntshilane">
+
+    <!-- Webpage Title -->
+    <title>Login - Naledi AI</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/naledi (3) 1.png">
+    <style>
+        /* Reduce padding for the header */
+        .ex-header {
+            padding: 30px 0;
+        }
+        .ex-header h1 {
+            font-size: 2rem;
+        }
+        .ex-header p {
+            font-size: 1rem;
+        }
+
+        /* Make sure the content does not hide behind the fixed navbar */
+        body {
+            padding-top: 80px; /* Adjust this value depending on the header height */
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            margin-top: 50px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+        }
+        .footer a {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand logo-image d-flex align-items-center" href="index.html">
+                <img src="images/naledi (3) 1.png" alt="alternative" style="width: 70px; height: auto;">
+                <span style="font-size: 1.5rem; font-weight: bold; margin-left: 10px;">Naledi AI</span>
+            </a>
+            <button class="navbar-toggler" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+            </button>
+        </div>
+    </nav>
+    <!-- end of navigation -->
+
+    <!-- Header -->
+    <header class="ex-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-10 offset-xl-1">
+                    <h1>Login to Naledi AI</h1>
+                    <p><strong>Please enter your credentials to continue.</strong></p>
+                </div>
+            </div>
+        </div>
+    </header> 
+    <!-- end of header -->
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <form action="login-process.php" method="POST" class="col-md-6 offset-md-3">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <p class="mt-3 text-center">Don't have an account? <a href="nalediai-registration.html">Sign Up</a></p>
+        </form>
+    </div>
+    <!-- end of main content -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2024 Naledi AI. All Rights Reserved.</p>
+            <p>Website designed by <a href="https://www.devgen.com" target="_blank">DEV GEN</a>.</p>
+        </div>
+    </footer>
+    <!-- end of footer -->
+
+    <!-- Scripts -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
